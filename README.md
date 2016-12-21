@@ -40,59 +40,7 @@ In each loop the program reads from the what are usually the analog inputs but h
 
 The signals for the low side mosfets are INVERTED so that a 0 results in a conducting mosfet tying the motor phase to ground and 1 results in a non-conducting mosfet.
 
-Basic hall sensor reader and commutation driver:
-
-    #define DEBUG 0
-
-    void setup() {
-      Serial.begin(115200);
-      // Set digital pins 2 to 7 as outputs (right to left)
-      // Digital Pin: 7,6,5,4,3,2,1,0
-      DDRD = DDRD | B11111100;
-    }
-
-    void loop() {
-     
-      byte b = PINC;
-      if (b==0b000001) {
-        if (DEBUG) Serial.println("p100");
-        //           CcBbAa
-        // PORTD = 0b01001000; (non inverted low side reference)
-           PORTD = 0b00011100; // inverted low-side
-      }
-      if (b==0b000011) {
-        if (DEBUG) Serial.println("p110");
-        //           CcBbAa
-        // PORTD = 0b01100000; (non inverted low side reference)
-           PORTD = 0b00110100;
-      }
-      if (b==0b000010) {
-        if (DEBUG) Serial.println("p010");
-        //           CcBbAa
-        // PORTD = 0b00100100; (non inverted low side reference)
-           PORTD = 0b01110000;
-      }
-      if (b==0b000110) {
-        if (DEBUG) Serial.println("p011");
-        //           CcBbAa
-        // PORTD = 0b10000100; (non inverted low side reference)
-           PORTD = 0b11010000;
-      }
-      if (b==0b000100) {
-        if (DEBUG) Serial.println("p001");
-        //           CcBbAa
-        // PORTD = 0b10010000; (non inverted low side reference)
-           PORTD = 0b11000100;
-      }
-      if (b==0b000101) {
-        if (DEBUG) Serial.println("p101");
-        //           CcBbAa
-        // PORTD = 0b00011000; (non inverted low side reference)
-           PORTD = 0b01001100;
-      }
-    }
-
-A more condenced version of the above would look like this, providing basic commutation in 14 lines of code:
+Basic hall sensor reader and commutation in 14 lines of code:
 
     void setup() {
       DDRD = DDRD | B11111100;
@@ -115,6 +63,23 @@ When lowercase a,b,c = 0, Low side mosfets conduct connecting phase wire to grou
 When Aa,Bb or Cc = **11**, High side 'ON', Low side 'OFF', result phase A,B or C connected to **supply (+)**.<br>
 When Aa,Bb or Cc = **01**, High side 'OFF', Low side 'OFF', result phase A,B or C **disconnected (0)**.<br>
 When Aa,Bb or Cc = **00**, High side 'OFF', Low side 'ON', result phase A,B or C connected to **ground (-)**.<br>
+
+If a NAND gate was used to invert the low side driver signals as in Nich Fugal's schematic above, our code would look like this: 
+
+    void setup() {
+      DDRD = DDRD | B11111100;
+    }
+
+    void loop() {
+      byte b = PINC;
+      // HALL:    CBA   DRIVER:  CcBbAa
+      if (b==0b000001) PORTD = 0b01001000;  // C:-, B:0, A:+
+      if (b==0b000011) PORTD = 0b01100000;  // C:-, B:+, A:0
+      if (b==0b000010) PORTD = 0b00100100;  // C:0, B:+, A:-
+      if (b==0b000110) PORTD = 0b10000100;  // C:+, B:0, A:-
+      if (b==0b000100) PORTD = 0b10010000;  // C:+, B:-, A:0
+      if (b==0b000101) PORTD = 0b00011000;  // C:0, B:-, A:+
+    }
 
 ### Reference pictures
 
