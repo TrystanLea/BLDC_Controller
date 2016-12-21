@@ -92,7 +92,7 @@ Basic hall sensor reader and commutation driver:
       }
     }
 
-A more condenced version of the above would look like this, providing basic commutation in 13 lines of code:
+A more condenced version of the above would look like this, providing basic commutation in 14 lines of code:
 
     void setup() {
       DDRD = DDRD | B11111100;
@@ -100,6 +100,7 @@ A more condenced version of the above would look like this, providing basic comm
 
     void loop() {
       byte b = PINC;
+      // HALL:    CBA   DRIVER:  CcBbAa
       if (b==0b000001) PORTD = 0b00011100;
       if (b==0b000011) PORTD = 0b00110100;
       if (b==0b000010) PORTD = 0b01110000;
@@ -107,6 +108,13 @@ A more condenced version of the above would look like this, providing basic comm
       if (b==0b000100) PORTD = 0b11000100;
       if (b==0b000101) PORTD = 0b01001100;
     }
+    
+Example: 0b00011100 splits into Cc:00, Bb:01, Aa:11.<br>
+When capital A,B,C = 1, High side mosfets conduct connecting phase wire to the supply voltage.<br>
+When lowercase a,b,c = 0, Low side mosfets conduct connecting phase wire to ground. (Inverted signal)<br>
+When Aa,Bb or Cc = **11**, High side 'ON', Low side 'OFF', result phase A,B,C connected to **supply**.<br>
+When Aa,Bb or Cc = **01**, High side 'OFF', Low side 'OFF', result phase A,B,C **disconnected**.<br>
+When Aa,Bb or Cc = **00**, High side 'OFF', Low side 'ON', result phase A,B or C connected to **ground**.<br>
 
 ### Reference pictures
 
