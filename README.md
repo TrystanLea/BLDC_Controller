@@ -28,7 +28,7 @@ Using the following P-type Mosfet on the high sides, N-type Mosfets on the low s
 
 - [3x Low side Mosfets: IRF1404ZPBF TO-220](http://uk.farnell.com/webapp/wcs/stores/servlet/ProductDisplay?partNumber=8657394) 
 - [3x High side Mosfets:  IRF4905PBF TO-220](http://uk.farnell.com/webapp/wcs/stores/servlet/ProductDisplay?partNumber=8648190) 
-- [12x Gate driver Mosfets: BS270](http://uk.farnell.com/webapp/wcs/stores/servlet/ProductDisplay?partNumber=1017689)
+- [6x Gate driver Mosfets: BS270](http://uk.farnell.com/webapp/wcs/stores/servlet/ProductDisplay?partNumber=1017689)
 
 The sensored brushless DC motor used was a 24V 134W motor (code: 57ZW3Y74A40) courtesy of [Ken Boak](http://sustburbia.blogspot.co.uk).
 
