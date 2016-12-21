@@ -64,6 +64,8 @@ When Aa,Bb or Cc = **11**, High side 'ON', Low side 'OFF', result phase A,B or C
 When Aa,Bb or Cc = **01**, High side 'OFF', Low side 'OFF', result phase A,B or C **disconnected (0)**.<br>
 When Aa,Bb or Cc = **00**, High side 'OFF', Low side 'ON', result phase A,B or C connected to **ground (-)**.<br>
 
+There are six commutations each representing 360 / 6 = 60 degrees of movement.
+
 If a NAND gate was used to invert the low side driver signals as in Nich Fugal's schematic above, our code would look like this: 
 
     void setup() {
