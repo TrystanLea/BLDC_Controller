@@ -91,3 +91,9 @@ Basic hall sensor reader and commutation driver:
            PORTD = 0b01001100;
       }
     }
+
+### Reference pictures
+
+![2.jpg](images/2.jpg)
+![3.jpg](images/3.jpg)
+![4.jpg](images/4.jpg)
