@@ -92,6 +92,22 @@ Basic hall sensor reader and commutation driver:
       }
     }
 
+A more condenced version of the above would look like this, providing basic commutation in 13 lines of code:
+
+    void setup() {
+      DDRD = DDRD | B11111100;
+    }
+
+    void loop() {
+      byte b = PINC;
+      if (b==0b000001) PORTD = 0b00011100;
+      if (b==0b000011) PORTD = 0b00110100;
+      if (b==0b000010) PORTD = 0b01110000;
+      if (b==0b000110) PORTD = 0b11010000;
+      if (b==0b000100) PORTD = 0b11000100;
+      if (b==0b000101) PORTD = 0b01001100;
+    }
+
 ### Reference pictures
 
 ![2.jpg](images/2.jpg)
