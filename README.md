@@ -22,7 +22,7 @@ Makeatronics open source BLDC Motor controller explanation and design:
 
 First prototype based on Nich Fugal's (Makeatronics) schematic:
 
-![SmartBLDC_sch.png](SmartBLDC_sch.png)
+![SmartBLDC_sch.png](images/SmartBLDC_sch.png)
 
 Using the following P-type Mosfet on the high sides, N-type Mosfets on the low sides and smaller N-type mosfets as gate drivers.
 
