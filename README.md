@@ -50,7 +50,7 @@ The next line shifts the supply voltage to phase B, rotating the rotor further:
 
     if (b==0b000011) PORTD = 0b00110100;  // C:-, B:+, A:0
     
-One full rotation takes 6 commutation's.
+One full rotation takes 6 commutation's, see the firmware example below.
 
 ### 4) Basic Arduino Commutation firmware
 
