@@ -32,7 +32,17 @@ Using the following P-type Mosfet on the high sides, N-type Mosfets on the low s
 
 The sensored brushless DC motor used was a 24V 134W motor (code: 57ZW3Y74A40) courtesy of [Ken Boak](http://sustburbia.blogspot.co.uk).
 
-### 3) Basic Arduino Commutation firmware
+### 3) Commutation
+
+![BLDC_diagram.png](images/BLDC_diagram.png)
+
+*Modified from BLDC diagram: AN857 Brushless DC Motor Control Made Easy*
+
+The [video by digitalPimple: Brushless DC Motors & Control - How it Works (Part 1 of 2)](https://www.youtube.com/watch?v=ZAY5JInyHXY) provides a useful visual overview of how commutation works that is well worth a watch.
+
+Supposing we want to move the motor rotor in a clockwise rotation starting from position A around to B and then C. By connecting phase A to the supply and phase C to ground, this produces a current flowing up through coil 5 (C-c) producing a magnetic field that attracts the south pole of the rotor, coil 5 is then connected to coil 2 (c-com) producing a magnetic field that attracts the north pole of the rotor,  as we have A connected to the supply the current then flows from the common through coil 4 (com-a) and coil 1 (a-A). The resultant magnetic field is centered 30 degrees in a clockwise direction from the vertical position, providing torque in the clockwise direction.
+
+### 4) Basic Arduino Commutation firmware
 
 The source code below is all that is needed to cover basic commutation without speed control. Using low level digital input reads and writes that allow reading and writing from/to a full port in one operation ensures that the commutation switch over is as fast and precise as possible rather than introducing delays due to sequential digital pin reading and writing.
 
