@@ -103,6 +103,20 @@ If a NAND gate was used to invert the low side driver signals as in Nich Fugal's
       if (b==0b000101) PORTD = 0b00011000;  // C:0, B:-, A:+
     }
 
+Waveform across phase A and B:
+
+![OSC1.jpg](images/OSC1.jpg)
+
+### PWM Speed Control development
+
+Dont think the following code is quite working yet..
+
+[PWM_BLDC_firmware.ino](PWM_BLDC_firmware.ino)
+
+Waveform across phase A and B:
+
+![OSC2.jpg](images/OSC2.jpg)
+
 ### Reference pictures
 
 ![2.jpg](images/2.jpg)
